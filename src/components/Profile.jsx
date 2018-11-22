@@ -61,6 +61,15 @@ export default class Profile extends Component {
            </div>
 
            <div className="new-status">
+             <div className="col-md-12 statuses">
+                {this.state.isLoading && <span>Loading...</span>}
+                {this.state.statuses.map((status) => (
+                   <div className="status" key={status.id}>
+                     {status.text}
+                   </div>
+                 )
+                )}
+              </div>
              <div className="col-md-12">
                <textarea className="input-status"
                  value={this.state.newStatus}
@@ -82,6 +91,10 @@ export default class Profile extends Component {
        </div>
      </div> : null
     );
+  }
+
+  componentDidMount() {
+   this.fetchData()
   }
 
   componentWillMount() {
@@ -118,6 +131,24 @@ export default class Profile extends Component {
        this.setState({
          statuses: statuses
        })
+     })
+ }
+
+ fetchData() {
+   this.setState({ isLoading: true })
+   const options = { decrypt: false }
+   getFile('statuses.json', options)
+     .then((file) => {
+       var statuses = JSON.parse(file || '[]')
+       this.setState({
+         person: new Person(loadUserData().profile),
+         username: loadUserData().username,
+         statusIndex: statuses.length,
+         statuses: statuses,
+       })
+     })
+     .finally(() => {
+       this.setState({ isLoading: false })
      })
  }
 }
