@@ -38,7 +38,7 @@ export default class Profile extends Component {
       !isSignInPending() && person ?
      <div className="container">
        <div className="row">
-         <div className="col-md-offset-3 col-md-6">
+         <div className="offset-md-3 col-md-6">
            <div className="col-md-12">
              <div className="avatar-section">
                <img
