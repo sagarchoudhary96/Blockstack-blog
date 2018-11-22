@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "blockstack": "^0.15.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": ">=4.1.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.3.1"
